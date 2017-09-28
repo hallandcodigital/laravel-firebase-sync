@@ -63,8 +63,9 @@ trait SyncsWithFirebase
         if (is_null($this->firebaseClient)) {
             $this->firebaseClient = new FirebaseLib(config('services.firebase.database_url'), config('services.firebase.secret'));
         }
-        $path = $this->getTable() . '/' . $this->getKey();
-
+        
+        // $path = $this->getTable() . '/' . $this->getKey();
+        $path = 'record-complaint-chat' . '/record-' . $this->record_id . '/message-' . $this->id;
         if ($mode === 'set') {
             $this->firebaseClient->set($path, $this->getFirebaseSyncData());
         } elseif ($mode === 'update') {
